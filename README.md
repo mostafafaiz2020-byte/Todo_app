@@ -20,7 +20,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ### Login Screen
 ![Screenshot 1](Screenshot%202026-09-24%20221148.png) ![Screenshot 1](https://github.com/mostafafaiz2020-byte/Todo_app/blob/123cd80960211f399ff449192c7c7688480bb525/Screenshot%202026-09-24%20221204.png)
-![Screenshot 1](Screenshot%202026-09-24%20221148.png) ![Screenshot 1](https://github.com/mostafafaiz2020-byte/Todo_app/blob/1842b48e9033fff5e6f7725e67b37c2ebaee06df/Screenshot%202026-09-28%20225544.png)
+
 ![Screenshot 1](Screenshot%202026-09-24%20221148.png) ![Screenshot 1](https://github.com/mostafafaiz2020-byte/Todo_app/blob/89e908716919bbea484eb30fed7eaa07ad1f2b6b/Screenshot%202026-09-28%20225559.png)
 
 
