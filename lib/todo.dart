@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:lec18/core/features/splash/splash.dart';
+import 'package:lec18/features/splash/splash.dart';
 
 class Todo extends StatelessWidget {
   const Todo({super.key});

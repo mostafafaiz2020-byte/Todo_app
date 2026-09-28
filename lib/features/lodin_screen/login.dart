@@ -1,20 +1,22 @@
-// core/features/lodin_screen/login.dart
-
-// core/features/lodin_screen/login.dart
+// features/lodin_screen/login.dart
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:lec18/core/features/home/home.dart';
-import 'package:lec18/core/features/lodin_screen/widgets/LoginDesc.dart';
-import 'package:lec18/core/features/lodin_screen/widgets/form.dart';
-import 'package:lec18/core/features/lodin_screen/widgets/login_photo.dart';
+import 'package:lec18/features/home/home.dart';
+import 'package:lec18/features/lodin_screen/widgets/LoginDesc.dart';
+import 'package:lec18/features/lodin_screen/widgets/form.dart';
+import 'package:lec18/features/lodin_screen/widgets/login_photo.dart';
 import 'package:lec18/gen/locale_keys.g.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

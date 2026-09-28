@@ -1,28 +1,77 @@
-// core/features/lodin_screen/widgets/login_photo.dart
+// features/lodin_screen/widgets/login_photo.dart
+
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:lec18/core/main_boton.dart';
 
-class LoginPhoto extends StatelessWidget {
+class LoginPhoto extends StatefulWidget {
   const LoginPhoto({super.key});
+
+  @override
+  State<LoginPhoto> createState() => _LoginPhotoState();
+}
+
+class _LoginPhotoState extends State<LoginPhoto> {
+  final picker = ImagePicker();
+  XFile? photo;
+  ImagePicker_camera() async {
+    photo = await picker.pickImage(source: ImageSource.camera);
+    setState(() {});
+  }
+
+  ImagePicker_gallery() async {
+    photo = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        height: 140.h,
-        width: 160.w,
+      child: Column(
+        children: [
+          InkWell(
+            onTap: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => Padding(
+                  padding: EdgeInsets.all(16.0.r),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      MainBotton(
+                        title: "Camera",
+                        onTap: () {
+                          ImagePicker_camera();
+                        },
+                      ),
 
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(500.r)),
+                      15.verticalSpace,
 
-        child: ClipOval(
-          child: Image.asset(
-            "assets/images/image.png",
-            width: 140.w,
-            height: 140.h,
-            fit: BoxFit.cover,
+                      MainBotton(
+                        title: "Gallery",
+                        onTap: () {
+                          Navigator.pop(context);
+                          ImagePicker_gallery();
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+            child: CircleAvatar(
+              radius: 60,
+              backgroundColor: const Color.fromARGB(255, 238, 238, 238),
+              child: photo == null ? Icon(Icons.person, size: 60.r) : null,
+              backgroundImage: photo != null
+                  ? Image.file(File(photo?.path ?? "")).image
+                  : null,
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

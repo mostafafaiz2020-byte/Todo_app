@@ -1,4 +1,5 @@
-// core/features/lodin_screen/widgets/form.dart
+// features/lodin_screen/widgets/form.dart
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +33,8 @@ class _FormFildState extends State<Form_fild> {
           cursorColor: Colors.blue,
 
           decoration: InputDecoration(
-            hintText: "********",
+            hintText: "Full name",
+
             hintStyle: TextStyle(fontSize: 20.sp),
 
             fillColor: const Color.fromARGB(255, 245, 240, 240),

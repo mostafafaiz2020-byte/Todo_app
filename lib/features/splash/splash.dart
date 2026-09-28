@@ -1,6 +1,6 @@
-// core/features/splash/splash.dart
+// features/splash/splash.dart
 import 'package:flutter/material.dart';
-import 'package:lec18/core/features/lodin_screen/login.dart';
+import 'package:lec18/features/lodin_screen/login.dart';
 import 'package:lottie/lottie.dart';
 
 class Splash extends StatefulWidget {
