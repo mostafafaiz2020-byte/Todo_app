@@ -38,6 +38,7 @@ class _FormFildState extends State<Form_fild> {
             hintStyle: TextStyle(fontSize: 20.sp),
 
             fillColor: const Color.fromARGB(255, 245, 240, 240),
+
             filled: true,
 
             enabledBorder: OutlineInputBorder(

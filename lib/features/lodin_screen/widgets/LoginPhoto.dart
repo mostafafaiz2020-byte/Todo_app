@@ -1,4 +1,4 @@
-// features/lodin_screen/widgets/login_photo.dart
+// features/lodin_screen/widgets/LoginPhoto.dart
 
 import 'dart:io';
 
@@ -16,14 +16,18 @@ class LoginPhoto extends StatefulWidget {
 
 class _LoginPhotoState extends State<LoginPhoto> {
   final picker = ImagePicker();
+
   XFile? photo;
+
   ImagePicker_camera() async {
     photo = await picker.pickImage(source: ImageSource.camera);
+
     setState(() {});
   }
 
   ImagePicker_gallery() async {
     photo = await picker.pickImage(source: ImageSource.gallery);
+
     setState(() {});
   }
 
@@ -65,10 +69,10 @@ class _LoginPhotoState extends State<LoginPhoto> {
             child: CircleAvatar(
               radius: 60,
               backgroundColor: const Color.fromARGB(255, 238, 238, 238),
-              child: photo == null ? Icon(Icons.person, size: 60.r) : null,
               backgroundImage: photo != null
                   ? Image.file(File(photo?.path ?? "")).image
                   : null,
+              child: photo == null ? Icon(Icons.person, size: 60.r) : null,
             ),
           ),
         ],

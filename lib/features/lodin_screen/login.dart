@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lec18/features/home/home.dart';
 import 'package:lec18/features/lodin_screen/widgets/LoginDesc.dart';
+import 'package:lec18/features/lodin_screen/widgets/LoginPhoto.dart';
 import 'package:lec18/features/lodin_screen/widgets/form.dart';
-import 'package:lec18/features/lodin_screen/widgets/login_photo.dart';
+
 import 'package:lec18/gen/locale_keys.g.dart';
 
 class Login extends StatefulWidget {
