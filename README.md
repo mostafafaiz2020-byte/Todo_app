@@ -12,18 +12,26 @@ A few resources to get you started if this is your first Flutter project:
 - [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-### Lottie Splash Screen
-![Screenshot 3](Screenshot%202026-09-24%20221223.png)
+## Lottie Splash Screen
 
-### Login Screen
-![Screenshot 1](Screenshot%202026-09-24%20221148.png) ![Screenshot 1](https://github.com/mostafafaiz2020-byte/Todo_app/blob/123cd80960211f399ff449192c7c7688480bb525/Screenshot%202026-09-24%20221204.png)
-### Login Screen
-![Screenshot 1](Screenshot%202026-09-24%20221148.png) ![Screenshot 1](https://github.com/mostafafaiz2020-byte/Todo_app/blob/315c789e4f3157e05426183fd5059611ea679346/Screenshot%202026-09-28%20225544.png)
+![Lottie Splash Screen](Screenshot%202026-09-24%20221223.png)
 
-![Screenshot 1](Screenshot%202026-09-24%20221148.png) ![Screenshot 1](https://github.com/mostafafaiz2020-byte/Todo_app/blob/89e908716919bbea484eb30fed7eaa07ad1f2b6b/Screenshot%202026-09-28%20225559.png)
+## Login Screen
 
+![Login Screen](Screenshot%202026-09-24%20221148.png)
 
+![Login Screen](https://github.com/mostafafaiz2020-byte/Todo_app/blob/123cd80960211f399ff449192c7c7688480bb525/Screenshot%202026-09-24%20221204.png?raw=true)
 
+![Login Screen](https://github.com/mostafafaiz2020-byte/Todo_app/blob/315c789e4f3157e05426183fd5059611ea679346/Screenshot%202026-09-28%20225544.png?raw=true)
+
+![Login Screen](https://github.com/mostafafaiz2020-byte/Todo_app/blob/89e908716919bbea484eb30fed7eaa07ad1f2b6b/Screenshot%202026-09-28%20225559.png?raw=true)
+
+## Screens
+
+![Screenshot 1](https://github.com/mostafafaiz2020-byte/Todo_app/blob/c744d541056d6cfa115e3f7a7170606560aae1a6/Screenshot%202026-10-06%20222209.png?raw=true)
+
+![Screenshot 2](https://github.com/mostafafaiz2020-byte/Todo_app/blob/c744d541056d6cfa115e3f7a7170606560aae1a6/Screenshot%202026-10-06%20222159.png?raw=true)
+
+![Screenshot 3](https://github.com/mostafafaiz2020-byte/Todo_app/blob/c744d541056d6cfa115e3f7a7170606560aae1a6/Screenshot%202026-10-06%20222146.png?raw=true)
+
+![Screenshot 4](https://github.com/mostafafaiz2020-byte/Todo_app/blob/c744d541056d6cfa115e3f7a7170606560aae1a6/Screenshot%202026-10-06%20222133.png?raw=true)
