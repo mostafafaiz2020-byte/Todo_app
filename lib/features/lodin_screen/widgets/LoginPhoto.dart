@@ -1,5 +1,4 @@
 // features/lodin_screen/widgets/LoginPhoto.dart
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -8,7 +7,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:lec18/core/main_boton.dart';
 
 class LoginPhoto extends StatefulWidget {
-  const LoginPhoto({super.key});
+  final void Function(String imagePath) onImageSelected;
+
+  const LoginPhoto({super.key, required this.onImageSelected});
 
   @override
   State<LoginPhoto> createState() => _LoginPhotoState();
@@ -22,11 +23,19 @@ class _LoginPhotoState extends State<LoginPhoto> {
   ImagePicker_camera() async {
     photo = await picker.pickImage(source: ImageSource.camera);
 
+    if (photo != null) {
+      widget.onImageSelected(photo!.path);
+    }
+
     setState(() {});
   }
 
   ImagePicker_gallery() async {
     photo = await picker.pickImage(source: ImageSource.gallery);
+
+    if (photo != null) {
+      widget.onImageSelected(photo!.path);
+    }
 
     setState(() {});
   }
@@ -48,6 +57,7 @@ class _LoginPhotoState extends State<LoginPhoto> {
                       MainBotton(
                         title: "Camera",
                         onTap: () {
+                          Navigator.pop(context);
                           ImagePicker_camera();
                         },
                       ),

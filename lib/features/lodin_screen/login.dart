@@ -1,9 +1,12 @@
 // features/lodin_screen/login.dart
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
+import 'package:lec18/core/add/app_const.dart';
+import 'package:lec18/core/main_boton.dart';
 import 'package:lec18/features/home/home.dart';
+import 'package:lec18/features/lodin_screen/data/user_model.dart';
 import 'package:lec18/features/lodin_screen/widgets/LoginDesc.dart';
 import 'package:lec18/features/lodin_screen/widgets/LoginPhoto.dart';
 import 'package:lec18/features/lodin_screen/widgets/form.dart';
@@ -18,6 +21,22 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  save_data(UserModel user) async {
+    await Hive.box<UserModel>(AppConst.userbox)
+        .put(AppConst.currentuser, user)
+        .then((value) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+          );
+        })
+        .catchError((error) {});
+  }
+
+  var nameController = TextEditingController();
+
+  String? imagePath;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +63,11 @@ class _LoginState extends State<Login> {
 
                 25.verticalSpace,
 
-                const LoginPhoto(),
+                LoginPhoto(
+                  onImageSelected: (image) {
+                    imagePath = image;
+                  },
+                ),
 
                 20.verticalSpace,
 
@@ -52,38 +75,20 @@ class _LoginState extends State<Login> {
 
                 30.verticalSpace,
 
-                const Form_fild(),
+                Form_fild(nameController: nameController),
 
                 70.verticalSpace,
 
-                Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomeScreen(),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      width: 100,
-                      height: 55,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(20),
+                MainBotton(
+                  title: LocaleKeys.login_text_button.tr(),
+                  onTap: () {
+                    save_data(
+                      UserModel(
+                        name: nameController.text,
+                        image: imagePath ?? "",
                       ),
-                      child: Center(
-                        child: Text(
-                          LocaleKeys.login_text_button.tr(),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ],
             ),

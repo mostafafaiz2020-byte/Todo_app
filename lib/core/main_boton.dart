@@ -15,7 +15,7 @@ class MainBotton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 16.r),
-        width: 120,
+        width: double.infinity,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 96, 149, 193),

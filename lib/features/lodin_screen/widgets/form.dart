@@ -1,12 +1,13 @@
 // features/lodin_screen/widgets/form.dart
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lec18/gen/locale_keys.g.dart';
 
 class Form_fild extends StatefulWidget {
-  const Form_fild({super.key});
+  final TextEditingController nameController;
+
+  const Form_fild({super.key, required this.nameController});
 
   @override
   State<Form_fild> createState() => _FormFildState();
@@ -26,6 +27,7 @@ class _FormFildState extends State<Form_fild> {
         5.verticalSpace,
 
         TextFormField(
+          controller: widget.nameController,
           onTapOutside: (value) {
             FocusScope.of(context).unfocus();
           },
