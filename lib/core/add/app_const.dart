@@ -2,4 +2,5 @@
 class AppConst {
   static const userbox = "userbox";
   static const currentuser = "currentUser";
+  static const taskbox = "taskbox";
 }

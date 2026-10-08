@@ -2,72 +2,117 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lec18/core/Models/task_model.dart';
 
 class TaskItem extends StatelessWidget {
-  const TaskItem({super.key});
+  final TaskModel? taskModel;
+  const TaskItem({super.key, required this.taskModel});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: EdgeInsets.all(16.0.r),
-        child: Row(
-          children: [
-            Container(
-              height: 80.h,
-              width: 20.w,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(100.r),
-              ),
+    return Container(
+      padding: EdgeInsets.all(16.r),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20.r),
+        boxShadow: [
+          BoxShadow(
+            color: const Color.fromARGB(255, 175, 165, 165).withOpacity(0.05),
+            blurRadius: 12,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 12.w,
+            height: 90.h,
+            decoration: BoxDecoration(
+              color: Color(taskModel!.color),
+              borderRadius: BorderRadius.circular(20.r),
             ),
+          ),
 
-            20.horizontalSpace,
+          16.horizontalSpace,
 
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Flutter tack",
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  taskModel?.titel ?? "",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w800,
+                    color: const Color(0xff1E293B),
                   ),
+                ),
 
-                  Text(
-                    "Flutter ",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+                4.verticalSpace,
+
+                // Task description
+                Text(
+                  taskModel?.description ?? "",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: const Color(0xff94A3B8),
+                    fontWeight: FontWeight.w500,
                   ),
+                ),
 
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 16.w,
-                      vertical: 8.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.blue.shade100,
-                      borderRadius: BorderRadius.circular(25.r),
-                    ),
-                    child: Text(
-                      "pending",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
+                10.verticalSpace,
+
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.w,
+                    vertical: 6.h,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xffEAF2FF),
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 7.w,
+                        height: 7.h,
+                        decoration: const BoxDecoration(
+                          color: Color(0xff2563EB),
+                          shape: BoxShape.circle,
+                        ),
                       ),
-                    ),
+
+                      6.horizontalSpace,
+
+                      Text(
+                        taskModel?.status ?? "",
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Color(taskModel!.color),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            Icon(Icons.arrow_back_ios),
-          ],
-        ),
+          ),
+
+          8.horizontalSpace,
+
+          Icon(
+            Icons.arrow_forward_ios_rounded,
+            size: 18.sp,
+            color: const Color(0xff94A3B8),
+          ),
+        ],
       ),
     );
   }

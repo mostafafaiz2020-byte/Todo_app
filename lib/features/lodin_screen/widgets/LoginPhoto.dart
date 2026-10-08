@@ -82,7 +82,13 @@ class _LoginPhotoState extends State<LoginPhoto> {
               backgroundImage: photo != null
                   ? Image.file(File(photo?.path ?? "")).image
                   : null,
-              child: photo == null ? Icon(Icons.person, size: 60.r) : null,
+              child: photo == null
+                  ? Icon(
+                      Icons.person,
+                      size: 60.r,
+                      color: const Color(0xff2563EB),
+                    )
+                  : null,
             ),
           ),
         ],

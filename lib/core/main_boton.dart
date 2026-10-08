@@ -18,12 +18,16 @@ class MainBotton extends StatelessWidget {
         width: double.infinity,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 96, 149, 193),
+          color: const Color(0xff2563EB),
           borderRadius: BorderRadius.circular(25),
         ),
         child: Text(
           title,
-          style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 18.sp,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
       ),
     );

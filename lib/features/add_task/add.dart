@@ -1,8 +1,14 @@
 // features/add_task/add.dart
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:lec18/core/Models/task_model.dart';
+import 'package:lec18/core/add/app_const.dart';
 import 'package:lec18/core/custom_fild.dart';
+import 'package:lec18/core/main_boton.dart';
+import 'package:lec18/features/add_task/widgets/status_drob.dart';
 
 class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({super.key});
@@ -20,10 +26,46 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
   TextEditingController timeController = TextEditingController();
 
+  var statusController = TextEditingController();
+
+  int selectedIndexColor = 0;
+
+  List<Color> Taskcolor = [
+    Colors.brown,
+    Colors.blue,
+    Colors.black,
+    Colors.cyan,
+    Colors.amber,
+    const Color.fromARGB(255, 125, 124, 121),
+    const Color.fromARGB(255, 214, 208, 187),
+  ];
+
+  void savetask(TaskModel task) {
+    Hive.box<TaskModel>(AppConst.taskbox)
+        .add(task)
+        .then((v) {
+          Navigator.pop(context);
+        })
+        .catchError((e) {
+          print(e.toString());
+        });
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    descriptionController.dispose();
+    dateController.dispose();
+    timeController.dispose();
+    statusController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 255, 255, 251),
 
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -73,11 +115,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
                 6.verticalSpace,
 
-                Form_fild(
-                  Controller: titleController,
-                  hinttext: "Task Title",
-                  maxlin: 2,
-                ),
+                Form_fild(Controller: titleController, hinttext: "", maxlin: 1),
 
                 12.verticalSpace,
 
@@ -125,11 +163,17 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                                 firstDate: DateTime.now(),
                                 lastDate: DateTime(2030),
                                 initialDate: DateTime.now(),
-                              );
+                              ).then((v) {
+                                if (v != null) {
+                                  dateController.text = DateFormat(
+                                    'yyyy-MM-dd',
+                                  ).format(v);
+                                }
+                              });
                             },
                             Controller: dateController,
                             hinttext: "Date",
-                            maxlin: 3,
+                            maxlin: 1,
                           ),
                         ],
                       ),
@@ -156,11 +200,15 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                               showTimePicker(
                                 context: context,
                                 initialTime: TimeOfDay.now(),
-                              );
+                              ).then((v) {
+                                if (v != null) {
+                                  timeController.text = v.format(context);
+                                }
+                              });
                             },
                             Controller: timeController,
                             hinttext: "Time",
-                            maxlin: 3,
+                            maxlin: 1,
                           ),
                         ],
                       ),
@@ -170,11 +218,20 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
                 12.verticalSpace,
 
-                ////////////////////////////////////////
+                StatusDrob(
+                  onchange: (v) {
+                    statusController.text = v ?? "";
+
+                    print("Test stutes ${statusController.text}");
+                  },
+                ),
+
+                20.verticalSpace,
+
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Status",
+                    "Color",
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w500,
@@ -184,141 +241,55 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
                 6.verticalSpace,
 
-                Container(
-                  width: double.infinity,
-                  height: 60.h,
-
-                  padding: EdgeInsets.symmetric(horizontal: 15.w),
-
-                  decoration: BoxDecoration(
-                    color: const Color(0xfff5f1f2),
-                    borderRadius: BorderRadius.circular(25.r),
-                  ),
-
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Choose Status",
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Colors.grey.shade700,
-                        ),
-                      ),
-
-                      Icon(
-                        Icons.keyboard_arrow_down,
-                        size: 25.sp,
-                        color: Colors.grey.shade700,
-                      ),
-                    ],
-                  ),
-                ),
-
-                15.verticalSpace,
-
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Choose Color",
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-
-                10.verticalSpace,
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      width: 45.w,
-                      height: 45.w,
-                      decoration: const BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-
-                    Container(
-                      width: 45.w,
-                      height: 45.w,
-                      decoration: const BoxDecoration(
-                        color: Colors.green,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-
-                    Container(
-                      width: 45.w,
-                      height: 45.w,
-                      decoration: const BoxDecoration(
-                        color: Colors.orange,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-
-                    Container(
-                      width: 45.w,
-                      height: 45.w,
-                      decoration: const BoxDecoration(
-                        color: Colors.red,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-
-                    Container(
-                      width: 45.w,
-                      height: 45.w,
-                      decoration: const BoxDecoration(
-                        color: Colors.tealAccent,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-
-                    Container(
-                      width: 45.w,
-                      height: 45.w,
-                      decoration: const BoxDecoration(
-                        color: Colors.black,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ],
-                ),
-
-                20.verticalSpace,
-
                 SizedBox(
-                  width: double.infinity,
-                  height: 60.h,
+                  height: 45.h,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
 
-                  child: ElevatedButton(
-                    onPressed: () {},
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            selectedIndexColor = index;
+                          });
+                        },
 
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
+                        child: CircleAvatar(
+                          radius: 20.r,
+                          backgroundColor: Taskcolor[index],
 
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.r),
-                      ),
-                    ),
+                          child: index == selectedIndexColor
+                              ? const Icon(Icons.check, color: Colors.white)
+                              : null,
+                        ),
+                      );
+                    },
 
-                    child: Text(
-                      "Save Task",
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    separatorBuilder: (context, index) {
+                      return 10.horizontalSpace;
+                    },
+
+                    itemCount: Taskcolor.length,
                   ),
                 ),
 
-                // مساحة تحت الزر
                 20.verticalSpace,
+
+                MainBotton(
+                  title: "Save Task",
+                  onTap: () {
+                    savetask(
+                      TaskModel(
+                        titel: titleController.text,
+                        description: descriptionController.text,
+                        date: dateController.text,
+                        time: timeController.text,
+                        status: statusController.text,
+                        color: Taskcolor[selectedIndexColor].value,
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),
